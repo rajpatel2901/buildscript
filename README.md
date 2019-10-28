@@ -1,9 +1,30 @@
 # buildscript
 buildscript {
       respitories{
-      google
-      
-      
-      
-      
-      
+      google()
+      jcenter()
+  }
+  
+  dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+    }
+ }
+ 
+ allprojects {
+         repositories {
+             google()
+             jcenter()
+    }
+ }
+ 
+ rootProject.buildDir = '../build'
+ subprojects {
+        project.buildDir = "${rootProject.buildDir}/${project.name}
+  }
+  subprojects {
+          project.evalutionDependsOn( ':app' )
+    }
+    
+    task clean(type: Delete) {
+          delete rootProject.buildDir
+    }
